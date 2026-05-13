@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.rays.test.TestUserTable&apos; to &apos;TestUserSave&apos;&#x0D;&#x0A;- Original project: &apos;Hibernate_basic&apos;&#x0D;&#x0A;- Original element: &apos;com.rays.test.TestUserTable&apos;&#x0D;&#x0A;- Renamed element: &apos;com.rays.test.TestUserSave&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;TestUserTable&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;com.rays.test{TestUserTable.java[TestUserTable" matchStrategy="1" name="TestUserSave" qualified="false" references="true" similarDeclarations="false" stamp="1778592762998" textual="false" version="1.0"/>
+</session>
