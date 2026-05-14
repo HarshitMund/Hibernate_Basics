@@ -1,0 +1,53 @@
+package com.rays.test;
+
+import java.util.Date;
+
+import com.rays.user.UserDTO;
+import com.rays.user.UserModel;
+
+public class TestUserModel {
+
+	public static void main(String[] args) throws Exception {
+
+//		testAdd();
+		testFindByLogin();
+
+	}
+
+	private static void testAdd() throws Exception {
+
+		UserModel model = new UserModel();
+
+		UserDTO dto = new UserDTO();
+
+		dto.setFirstName("Harshit");
+		dto.setLastName("Mund");
+		dto.setLoginId("harshit@gmail.com");
+		dto.setPassword("Pass@1234");
+		dto.setAddress("Indore");
+		dto.setDob(new Date());
+
+		int id = model.add(dto);
+		System.out.println("Record inserted at id: " + id);
+
+	}
+
+	private static void testFindByLogin() throws Exception {
+
+		UserModel model = new UserModel();
+
+		UserDTO dto = model.findByLogin("harshit@gmail.com");
+
+		if (dto != null) {
+			System.out.print(dto.getId());
+			System.out.print("\t" + dto.getFirstName());
+			System.out.print("\t" + dto.getLastName());
+			System.out.print("\t" + dto.getLoginId());
+			System.out.print("\t" + dto.getPassword());
+			System.out.print("\t" + dto.getDob());
+			System.out.println("\t" + dto.getAddress());
+		}
+
+	}
+
+}
