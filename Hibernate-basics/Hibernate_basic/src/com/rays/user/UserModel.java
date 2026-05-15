@@ -13,6 +13,12 @@ public class UserModel {
 
 	public int add(UserDTO dto) throws Exception {
 
+		UserDTO existingDto = findByLogin(dto.getLoginId());
+
+		if (existingDto != null) {
+			throw new Exception("Login Id Already Exist...");
+		}
+
 		SessionFactory sf = new Configuration().configure().buildSessionFactory();
 
 		Session session = sf.openSession();
@@ -20,6 +26,42 @@ public class UserModel {
 		Transaction ts = session.beginTransaction();
 
 		session.save(dto);
+
+		ts.commit();
+
+		return dto.getId();
+	}
+
+	public int update(UserDTO dto) throws Exception {
+
+		UserDTO existingDto = findByLogin(dto.getLoginId());
+
+		if (existingDto != null) {
+			throw new Exception("Login Id Already Exist...");
+		}
+
+		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+
+		Session session = sf.openSession();
+
+		Transaction ts = session.beginTransaction();
+
+		session.update(dto);
+
+		ts.commit();
+
+		return dto.getId();
+	}
+
+	public int delete(UserDTO dto) throws Exception {
+
+		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+
+		Session session = sf.openSession();
+
+		Transaction ts = session.beginTransaction();
+
+		session.delete(dto);
 
 		ts.commit();
 
@@ -84,22 +126,22 @@ public class UserModel {
 				criteria.add(Restrictions.eq("id", dto.getId()));
 
 			if (dto.getFirstName() != null && dto.getFirstName().length() > 0)
-				criteria.add(Restrictions.like("firstName", dto.getFirstName()));
+				criteria.add(Restrictions.like("firstName", dto.getFirstName() + "%"));
 
 			if (dto.getLastName() != null && dto.getLastName().length() > 0)
-				criteria.add(Restrictions.like("lastName", dto.getLastName()));
+				criteria.add(Restrictions.like("lastName", dto.getLastName() + "%"));
 
 			if (dto.getLoginId() != null && dto.getLoginId().length() > 0)
-				criteria.add(Restrictions.like("loginId", dto.getLoginId()));
+				criteria.add(Restrictions.eq("loginId", dto.getLoginId()));
 
 			if (dto.getPassword() != null && dto.getPassword().length() > 0)
-				criteria.add(Restrictions.like("password", dto.getPassword()));
+				criteria.add(Restrictions.eq("password", dto.getPassword()));
 
 			if (dto.getAddress() != null && dto.getAddress().length() > 0)
-				criteria.add(Restrictions.like("address", dto.getAddress()));
+				criteria.add(Restrictions.like("address", dto.getAddress() + "%"));
 
 			if (dto.getDob() != null && dto.getDob().getDate() > 0)
-				criteria.add(Restrictions.like("dob", dto.getDob()));
+				criteria.add(Restrictions.eq("dob", dto.getDob()));
 		}
 
 		List<UserDTO> list = criteria.list();

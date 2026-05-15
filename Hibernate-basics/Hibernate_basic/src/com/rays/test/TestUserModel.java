@@ -78,9 +78,9 @@ public class TestUserModel {
 
 		UserDTO dto = new UserDTO();
 
-		List<UserDTO> list = model.search(dto);
+		dto.setFirstName("Harshit");
 		
-//		dto.setFirstName("Harshit");
+		List<UserDTO> list = model.search(dto);
 
 		Iterator<UserDTO> it = list.iterator();
 

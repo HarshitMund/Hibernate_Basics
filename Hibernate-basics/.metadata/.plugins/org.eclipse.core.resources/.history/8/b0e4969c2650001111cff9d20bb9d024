@@ -1,0 +1,11 @@
+package com.rays.criteria;
+
+public class TestCriteriaAnd {
+	
+	public static void main(String[] args) {
+		
+		
+		
+	}
+
+}
